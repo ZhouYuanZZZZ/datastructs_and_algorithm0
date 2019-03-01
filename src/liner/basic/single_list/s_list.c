@@ -40,13 +40,23 @@ void insertSlist(SeqList* list, int elem, int loc) {
 }
 
 void updateSlist(SeqList* list, int elem, int loc) {
-
+	*(list->elem + loc) = elem;
 }
 
 void deleteSlist(SeqList* list, int loc) {
+	//找到待删除的位置 待删除元素后边的元素依次前移
+	for (int i = loc;i < list->loc;i++) {
+		*(list->elem + i) = *(list->elem + i + 1);
+	}
 
+	list->loc--;
 }
 
 void displaySlist(SeqList* list) {
-
+	printf("[");
+	for (int i = 0; i <= list->loc; i++) {
+		printf("%d ", *(list->elem+i));
+	}
+	printf("]");
+	printf("\n");
 }

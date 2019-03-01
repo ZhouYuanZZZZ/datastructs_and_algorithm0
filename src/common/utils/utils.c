@@ -10,9 +10,7 @@ int * generalRandomIntArray(int len, int max) {
 	for (int i = 0; i < len; i++) {
 		*(a + i) = rand() % (max + 1);
 	}
-
 	return a;
-
 }
 
 void showIntArray(int * p, int len) {

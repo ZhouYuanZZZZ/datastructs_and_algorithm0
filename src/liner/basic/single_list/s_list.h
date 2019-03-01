@@ -7,7 +7,6 @@ typedef struct SListStruct {
 	int * elem;
 } SeqList;
 
-
 SeqList * initEmptySeqList(int size);
 
 int getSlistLenth(SeqList* list);

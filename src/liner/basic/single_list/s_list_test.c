@@ -1,7 +1,7 @@
 #include "../../../common/utils/utils.h"
 #include "s_list.h"
 
-int main() {
+int main0() {
 	int *array = generalRandomIntArray(10, 100);
 	SeqList* s =  initEmptySeqList(100);
 
@@ -14,5 +14,19 @@ int main() {
 	printf("\n");
 
 	showIntArray1(s->elem, s->loc+1);
+
+	printf("²âÊÔÉ¾³ý\n");
+	showIntArray1(s->elem, s->loc + 1);
+	deleteSlist(s, 0);
+	showIntArray1(s->elem, s->loc + 1);
+	deleteSlist(s, 9);
+	showIntArray1(s->elem, s->loc + 1);
+	
+	printf("²âÊÔÐÞ¸Ä\n");
+	updateSlist(s, 666, 2);
+	showIntArray1(s->elem, s->loc + 1);
+
+	displaySlist(s);
+
 	return 0;
 }

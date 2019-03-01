@@ -1,0 +1,8 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/Debug
+/datastructs_and_algorithm_in_c.vcxproj.user
+/datastructs_and_algorithm_in_c.vcxproj.filters
+/datastructs_and_algorithm_in_c.vcxproj
