@@ -1,4 +1,5 @@
-﻿#include "s_list.h"
+﻿#include <stdio.h>
+#include "s_list.h"
 
 /*
 初始化线性表

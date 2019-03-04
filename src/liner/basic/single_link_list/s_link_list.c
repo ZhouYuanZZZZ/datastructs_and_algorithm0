@@ -15,25 +15,123 @@ void createLinkedListFromHead(SL L, int a[], int len) {
     }
 }
 
-//½«µ¥ÌõÊı¾İÍ·²å·¨²åÈëÁ´±íÖĞ
+void createLinkedListFromTail(SL L, int a[], int len) {
+    SNode *tail = L;
+    for (int i = 0; i < len; i++) {
+        tail = insertDataIntoListTail(tail, *(a + i));
+    }
+}
+
+//å°†å•æ¡æ•°æ®å¤´æ’æ³•æ’å…¥é“¾è¡¨ä¸­
 void insertDataIntoListHead(SL L, int data) {
 
     SNode *node = (SNode *) malloc(sizeof(SNode));
     node->data = data;
+    node->next = NULL;
 
     node->next = L->next;
     L->next = node;
 }
+
+//å°†å•æ¡æ•°æ®å°¾æ’æ³•æ’å…¥é“¾è¡¨ä¸­
+SNode *insertDataIntoListTail(SNode *tail, int data) {
+
+    SNode *node = (SNode *) malloc(sizeof(SNode));
+    node->data = data;
+    node->next = NULL;
+
+    tail->next = node;
+
+    return node;
+}
+
+int getElemByIndex(SL L, int index) {
+
+    int currentIndex = -1;
+    SNode *node = L->next;
+    while (node != NULL) {
+        currentIndex++;
+
+        if (currentIndex == index) {
+            return node->data;
+        }
+
+        node = node->next;
+    }
+
+    return -1;
+}
+
+
+int getIndexByElem(SL L, int elem) {
+
+    int currentIndex = -1;
+    SNode *node = L->next;
+    while (node != NULL) {
+        currentIndex++;
+
+        if (node->data == elem) {
+            return currentIndex;
+        }
+
+        node = node->next;
+    }
+
+    return -1;
+}
+
+int getListLength(SL L) {
+
+    int currentIndex = -1;
+    SNode *node = L->next;
+    while (node != NULL) {
+        currentIndex++;
+
+        node = node->next;
+    }
+
+    return currentIndex + 1;
+}
+
+int insertElem(SL L, int index, int elem) {
+
+    SNode* pre = L;
+    for (int i = 0; i < index; i++) {
+        pre = pre->next;
+    }
+
+    SNode* node = (SNode*)malloc(sizeof(SNode));
+    node->next = NULL;
+    node->data = elem;
+
+    node->next = pre->next;
+    pre->next = node;
+}
+
+
+int removeElem(SL L, int index) {
+
+    SNode* pre = L;
+    for (int i = 0; i < index; i++) {
+        pre = pre->next;
+    }
+
+    SNode* removeNode = pre->next;
+    pre->next = removeNode->next;
+
+    free(removeNode);
+}
+
 
 void showSLinkedList(SL L) {
     printf("[");
     SNode *currentNode = L->next;
 
     while (currentNode != NULL) {
-        printf("%d ",currentNode->data);
+        printf("%d ", currentNode->data);
         currentNode = currentNode->next;
     }
 
-    printf("]");
+    printf("]\n");
 
 }
