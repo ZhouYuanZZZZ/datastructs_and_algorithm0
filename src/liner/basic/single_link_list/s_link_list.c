@@ -95,12 +95,12 @@ int getListLength(SL L) {
 
 int insertElem(SL L, int index, int elem) {
 
-    SNode* pre = L;
+    SNode *pre = L;
     for (int i = 0; i < index; i++) {
         pre = pre->next;
     }
 
-    SNode* node = (SNode*)malloc(sizeof(SNode));
+    SNode *node = (SNode *) malloc(sizeof(SNode));
     node->next = NULL;
     node->data = elem;
 
@@ -111,12 +111,12 @@ int insertElem(SL L, int index, int elem) {
 
 int removeElem(SL L, int index) {
 
-    SNode* pre = L;
+    SNode *pre = L;
     for (int i = 0; i < index; i++) {
         pre = pre->next;
     }
 
-    SNode* removeNode = pre->next;
+    SNode *removeNode = pre->next;
     pre->next = removeNode->next;
 
     free(removeNode);
@@ -134,4 +134,70 @@ void showSLinkedList(SL L) {
 
     printf("]\n");
 
+}
+
+SL mergeLinkList(SL L1, SL L2) {
+    SNode *pa, *pb, *tailL3;
+
+    SL L3 = createLinkedList();
+
+    tailL3 = L3;
+    pa = L1->next;
+    pb = L2->next;
+
+    while (pa != NULL && pb != NULL) {
+        if (pa->data <= pb->data) {
+            tailL3->next = pa;
+            tailL3 = pa;
+            pa = pa->next;
+        } else {
+            tailL3->next = pb;
+            tailL3 = pb;
+            pb = pb->next;
+        }
+    }
+
+    if (pa != NULL) {
+        tailL3->next = pa;
+    }
+
+    if (pb != NULL) {
+        tailL3->next = pb;
+    }
+
+    free(L1);
+    free(L2);
+
+    return L3;
+}
+
+void reverseSeqlinkedList(SL L) {
+    SNode *nextNode = L->next->next;
+
+    SNode *node = L->next;
+    node->next = NULL;
+
+    SNode *r;
+
+    while (nextNode != NULL) {
+
+        r = nextNode->next;
+        nextNode->next = node;
+
+        node = nextNode;
+        nextNode = r;
+    }
+
+    L->next = node;
+}
+
+void destroyLinkedList(SL L){
+    SNode node;
+    SNode* p = L->next;
+    while(p!=NULL){
+        node = *p;
+        free(p);
+        p = node.next;
+    }
+    free(L);
 }
