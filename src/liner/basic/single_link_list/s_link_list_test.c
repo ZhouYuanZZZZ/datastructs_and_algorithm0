@@ -41,7 +41,7 @@ int reverse_test() {
     showSLinkedList(L);
 }
 
-int main() {
+int main666() {
     reverse_test();
 
 }
