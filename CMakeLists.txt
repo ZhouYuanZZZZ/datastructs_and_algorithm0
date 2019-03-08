@@ -15,4 +15,4 @@ add_executable(datastructs_and_algorithm_in_c
         src/liner/basic/single_link_list/s_link_list_test.c
         src/liner/basic/single_list/s_list.c
         src/liner/basic/single_list/s_list.h
-        src/liner/basic/single_list/s_list_test.c src/liner/basic/double_link_list/d_link_list.h src/liner/basic/double_link_list/d_link_list.c src/liner/basic/double_link_list/d_link_list_test.c)
+        src/liner/basic/single_list/s_list_test.c src/liner/basic/double_link_list/d_link_list.h src/liner/basic/double_link_list/d_link_list.c src/liner/basic/double_link_list/d_link_list_test.c src/liner/stack/seq_stack/seq_stack.h src/liner/stack/seq_stack/seq_stack.c src/liner/stack/seq_stack/seq_stack_test.c src/liner/stack/link_stack/link_stack.c src/liner/stack/link_stack/link_stack.h src/liner/stack/link_stack/link_stack_test.c)
