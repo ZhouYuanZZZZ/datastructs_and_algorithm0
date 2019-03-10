@@ -4,10 +4,12 @@
 typedef struct LinkNode{
     int data;
     struct LinkNode* next;
-    struct LinkNode* top;
+
 } LinkNode,*LinkStack;
 
-LinkStack createStaticStack();
+
+
+LinkStack createLinkStack();
 
 void initLinkStack(LinkStack stack);
 
@@ -15,10 +17,10 @@ void pushLinkStack(LinkStack stack,int elem);
 
 int popLinkStack(LinkStack stack);
 
-int LinkStackSize(LinkStack stack);
+int linkStackSize(LinkStack stack);
 
 int getLinkStackTopElem(LinkStack stack);
 
-int checkLinkStackEmpty(LinkStack stack);
+bool checkLinkStackEmpty(LinkStack stack);
 
 #endif //DATASTRUCTS_AND_ALGORITHM_IN_C_LINK_STACK_H
