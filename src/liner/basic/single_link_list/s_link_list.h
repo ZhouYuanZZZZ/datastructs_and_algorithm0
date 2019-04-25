@@ -10,7 +10,7 @@ typedef struct SNode {
 
 SL createLinkedList();
 
-//头插法建立单链表
+//澶存彃娉曞缓绔嬪崟閾捐〃
 void createLinkedListFromHead(SL L, int a[], int len);
 
 void destroyLinkedList(SL L);

@@ -1,7 +1,7 @@
 #include <utils.h>
 #include "link_stack.h"
 
-int main(){
+int main3323(){
 
     LinkStack stack = createLinkStack();
     initLinkStack(stack);

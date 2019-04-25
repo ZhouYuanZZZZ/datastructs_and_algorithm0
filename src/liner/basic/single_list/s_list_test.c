@@ -15,14 +15,14 @@ int main0() {
 
 	showIntArray1(s->elem, s->loc+1);
 
-	printf("²âÊÔÉ¾³ý\n");
+	printf("æµ‹è¯•åˆ é™¤\n");
 	showIntArray1(s->elem, s->loc + 1);
 	deleteSlist(s, 0);
 	showIntArray1(s->elem, s->loc + 1);
 	deleteSlist(s, 9);
 	showIntArray1(s->elem, s->loc + 1);
 	
-	printf("²âÊÔÐÞ¸Ä\n");
+	printf("æµ‹è¯•ä¿®æ”¹\n");
 	updateSlist(s, 666, 2);
 	showIntArray1(s->elem, s->loc + 1);
 
