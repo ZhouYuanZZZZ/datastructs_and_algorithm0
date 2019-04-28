@@ -91,7 +91,7 @@ int getLinkStackTopElem(LinkStack stack) {
 }
 
 bool checkLinkStackEmpty(LinkStack stack) {
-    LinkNode *pNode = getLastNodePre(stack);
 
-    return pNode == stack;
+
+    return stack->next == NULL;
 }

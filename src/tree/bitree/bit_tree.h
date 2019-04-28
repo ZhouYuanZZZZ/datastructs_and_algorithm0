@@ -6,6 +6,24 @@ typedef struct BiTNode{
     struct BiTNode *lchild,*rchild;
 }BiTNode,*BiTree;
 
+
+typedef struct LinkNodeForBiTree{
+    BiTNode* data;
+    struct LinkNodeForBiTree* next;
+
+} LinkNodeForBiTree,*LinkStackForBiTree;
+
+LinkStackForBiTree createLinkStackForBiTree();
+
+void initLinkStackForBiTree(LinkStackForBiTree stack);
+
+void pushLinkStackForBiTree(LinkStackForBiTree stack,BiTNode node);
+
+BiTNode* popLinkStackForBiTree(LinkStackForBiTree stack);
+
+int checkLinkStackEmptyForBiTree(LinkStackForBiTree stack);
+
+
 //访问节点方法
 void visitNode(BiTree tree);
 
