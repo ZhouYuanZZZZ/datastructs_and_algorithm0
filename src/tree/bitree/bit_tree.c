@@ -2,72 +2,50 @@
 #include "bit_tree.h"
 #include "stdio.h"
 
+SeqStaticStackForBiTree* createStaticStackForBiTree(){
 
-LinkStackForBiTree createLinkStackForBiTree(){
-    LinkStackForBiTree  stackForBiTree = (LinkStackForBiTree)malloc(sizeof(LinkStackForBiTree));
-    return stackForBiTree;
+    SeqStaticStackForBiTree* stack = (SeqStaticStackForBiTree*)malloc(sizeof(SeqStaticStackForBiTree));
+    return stack;
 }
 
-void initLinkStackForBiTree(LinkStackForBiTree stack){
-    stack->data =  NULL;
-    stack->next = NULL;
+void initSeqStaticStackForBiTree(SeqStaticStackForBiTree* stack){
+    stack->top = -1;
 }
 
-LinkNodeForBiTree *getLastNodePre(LinkStackForBiTree stack) {
-    LinkNodeForBiTree *node = stack->next;
-
-    if (node == NULL) {
-        return NULL;
-    }
-
-    if(node->next == NULL){
-        return stack;
-    }
-
-    while (node->next != NULL) {
-        if (node->next->next == NULL) {
-            return node;
-        }
-        node = node->next;
-    }
-
-    return node;
-}
-
-void pushLinkStackForBiTree(LinkStackForBiTree stack,BiTNode node){
-
-    LinkNodeForBiTree* linkNodeForBiTree = (LinkNodeForBiTree *) malloc(sizeof(LinkNodeForBiTree));
-    linkNodeForBiTree->data = &node;
-    linkNodeForBiTree->next = NULL;
-
-    LinkNodeForBiTree *pNode = getLastNodePre(stack);
-    if (pNode == NULL) {
-        stack->next = linkNodeForBiTree;
+void pushSeqStaticStackForBiTree(SeqStaticStackForBiTree* stack,BiTNode node){
+    //判断栈是否满
+    if(stack->top == 99){
+        printf("stack full\n");
         return;
     }
 
-    pNode->next->next = &node;
+    stack->datas[++stack->top] = node;
 }
 
-BiTNode* popLinkStackForBiTree(LinkStackForBiTree stack){
-    LinkNodeForBiTree *pNode = getLastNodePre(stack);
-    if (pNode == NULL) {
+BiTNode* popSeqStaticStackForBiTree(SeqStaticStackForBiTree* stack){
+
+    if(checkSeqStaticStackEmptyForBiTree(stack) == 1){
+        printf("empty stack");
         return NULL;
     }
 
-    LinkNodeForBiTree *node = pNode->next;
-    pNode->next = NULL;
+    return &stack->datas[stack->top--];
 
-    BiTNode* biTNode = node->data;
-    free(node);
-
-    return biTNode;
 }
 
-int checkLinkStackEmptyForBiTree(LinkStackForBiTree stack){
-    return stack->next == NULL;
+int seqStaticStackSizeForBiTree(SeqStaticStackForBiTree* stack){
+
+    return -1;
+
 }
 
+BiTNode getSeqStaticStackTopElemForBiTree(SeqStaticStackForBiTree* stack){
+
+}
+
+int checkSeqStaticStackEmptyForBiTree(SeqStaticStackForBiTree* stack){
+    return stack->top == -1 ? 1 : 0;
+}
 
 BiTree genTestTree() {
 
@@ -140,16 +118,29 @@ void postOrder(BiTree tree) {
 void inOrder1(BiTNode node){
 
     //初始化栈
-    LinkStackForBiTree* stack =  createLinkStackForBiTree();
-    initLinkStackForBiTree(stack);
+   SeqStaticStackForBiTree* stack = createStaticStackForBiTree();
+   initSeqStaticStackForBiTree(stack);
 
     BiTNode* p = &node;
 
-    while(p!=NULL || checkLinkStackEmptyForBiTree(stack)){
+    while(p!=NULL || checkSeqStaticStackEmptyForBiTree(stack)){
 
+        //所有左节点一一进栈
         if(p!=NULL){
 
-         pushLinkStackForBiTree(stack,*p);
+         //左节点进栈
+         pushSeqStaticStackForBiTree(stack,*p);
+         p = p->lchild;
+
+        }else{
+            //退栈 此节点要么没有左节点 要么已经被访问过了
+            p = popSeqStaticStackForBiTree(stack);
+
+            //访问这个节点
+            visitNode(p);
+
+            //遍历右子树
+            p=p->rchild;
 
         }
 

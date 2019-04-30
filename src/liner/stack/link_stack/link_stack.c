@@ -1,97 +1,110 @@
 #include <malloc.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "link_stack.h"
 
-LinkStack createLinkStack() {
+LinkStackEntityP createLinkStack() {
 
     LinkStack stack = (LinkStack) malloc(sizeof(LinkStack));
 
-    return stack;
+    LinkStackEntityP stackEntityP = (LinkStackEntityP) malloc(sizeof(struct LinkStackEntity));
+    stackEntityP->stack = stack;
+
+    return stackEntityP;
 }
 
-void initLinkStack(LinkStack stack) {
-    stack->data = -1;
-    stack->next = NULL;
+void initLinkStack(LinkStackEntityP stack) {
+
+    stack->stack->data = -1;
+    stack->stack->next = NULL;
+
+    //栈顶指针指向栈头结点
+    stack->top = stack->stack;
+
 }
 
-LinkNode *getLastNodePre(LinkStack stack) {
-    LinkNode *node = stack->next;
 
-    if (node == NULL) {
-        return NULL;
-    }
-
-    if(node->next == NULL){
-        return stack;
-    }
-
-    while (node->next != NULL) {
-        if (node->next->next == NULL) {
-            return node;
-        }
-        node = node->next;
-    }
-
-    return node;
-}
-
-void pushLinkStack(LinkStack stack, int elem) {
+void pushLinkStack(LinkStackEntityP stackEntityP, int elem) {
+    //建立栈节点
     LinkNode *node = (LinkNode *) malloc(sizeof(LinkNode));
     node->data = elem;
     node->next = NULL;
 
-    LinkNode *pNode = getLastNodePre(stack);
-    if (pNode == NULL) {
-        stack->next = node;
-        return;
-    }
+    //将节点加入到链栈中去
+    stackEntityP->top->next = node;
 
-    pNode->next->next = node;
+    //栈顶指针加1
+    stackEntityP->top = node;
 }
 
-int popLinkStack(LinkStack stack) {
+//获取栈顶的前一个元素
+LinkNode *getLinkStackTopPre(LinkStackEntityP linkStackEntityP) {
 
-    LinkNode *pNode = getLastNodePre(stack);
-    if (pNode == NULL) {
+    LinkNode *node = linkStackEntityP->stack;
+
+    while (node->next != linkStackEntityP->top) {
+        node = node->next;
+    }
+
+    return node;
+
+}
+
+int popLinkStack(LinkStackEntityP linkStackEntityP) {
+
+    //判断栈是否为空
+    if (checkLinkStackEmpty(linkStackEntityP)) {
+        printf("empty stack");
+
         return -1;
     }
 
-    LinkNode *node = pNode->next;
-    pNode->next = NULL;
+    //栈顶节点
+    LinkNode *topNode = linkStackEntityP->top;
+    int elem = linkStackEntityP->top->data;
 
-    int elem = node->data;
-    free(node);
+    //栈顶节点的前一个节点
+    LinkNode *pNode = getLinkStackTopPre(linkStackEntityP);
+
+    //栈顶指针减一
+    linkStackEntityP->top = pNode;
+
+    free(topNode);
 
     return elem;
 
 }
 
-int linkStackSize(LinkStack stack) {
+int linkStackSize(LinkStackEntityP stackEntityP) {
     int count = 0;
-    LinkNode *node = stack->next;
-
-    while (node != NULL) {
+    LinkNode *topNode = stackEntityP->top;
+    LinkNode *p = stackEntityP->stack;
+    while (p != topNode) {
         count++;
-
-        node = node->next;
+        p = p->next;
     }
 
     return count;
 }
 
-int getLinkStackTopElem(LinkStack stack) {
-    LinkNode *pNode = getLastNodePre(stack);
-    if (pNode == NULL) {
+int getLinkStackTopElem(LinkStackEntityP linkStackEntityP) {
+    //判断栈是否为空
+    if (checkLinkStackEmpty(linkStackEntityP)) {
+        printf("empty stack");
+
         return -1;
     }
 
+    //栈顶节点
+    LinkNode *topNode = linkStackEntityP->top;
+    int elem = linkStackEntityP->top->data;
 
-    return pNode->next->data;
+    return elem;
 
 }
 
-bool checkLinkStackEmpty(LinkStack stack) {
+bool checkLinkStackEmpty(LinkStackEntityP linkStackEntityP) {
 
-
-    return stack->next == NULL;
+    //栈顶指针指向头结点,此栈为空
+    return linkStackEntityP->top == linkStackEntityP->stack;
 }

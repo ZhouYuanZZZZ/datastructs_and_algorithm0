@@ -1,27 +1,33 @@
 #ifndef DATASTRUCTS_AND_ALGORITHM_IN_C_BIT_TREE_H
 #define DATASTRUCTS_AND_ALGORITHM_IN_C_BIT_TREE_H
 
+#include <stdbool.h>
+
 typedef struct BiTNode{
     int data;
     struct BiTNode *lchild,*rchild;
 }BiTNode,*BiTree;
 
+typedef struct StaticStackForBiTree{
+    BiTNode datas[100];
+    int top;
+} SeqStaticStackForBiTree;
 
-typedef struct LinkNodeForBiTree{
-    BiTNode* data;
-    struct LinkNodeForBiTree* next;
 
-} LinkNodeForBiTree,*LinkStackForBiTree;
+SeqStaticStackForBiTree* createStaticStackForBiTree();
 
-LinkStackForBiTree createLinkStackForBiTree();
+void initSeqStaticStackForBiTree(SeqStaticStackForBiTree* stack);
 
-void initLinkStackForBiTree(LinkStackForBiTree stack);
+void pushSeqStaticStackForBiTree(SeqStaticStackForBiTree* stack,BiTNode node);
 
-void pushLinkStackForBiTree(LinkStackForBiTree stack,BiTNode node);
+BiTNode* popSeqStaticStackForBiTree(SeqStaticStackForBiTree* stack);
 
-BiTNode* popLinkStackForBiTree(LinkStackForBiTree stack);
+int seqStaticStackSizeForBiTree(SeqStaticStackForBiTree* stack);
 
-int checkLinkStackEmptyForBiTree(LinkStackForBiTree stack);
+BiTNode getSeqStaticStackTopElemForBiTree(SeqStaticStackForBiTree* stack);
+
+int checkSeqStaticStackEmptyForBiTree(SeqStaticStackForBiTree* stack);
+
 
 
 //访问节点方法

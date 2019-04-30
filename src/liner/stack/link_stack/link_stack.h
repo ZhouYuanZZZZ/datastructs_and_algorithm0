@@ -7,20 +7,27 @@ typedef struct LinkNode{
 
 } LinkNode,*LinkStack;
 
+typedef struct LinkStackEntity{
+    //链栈
+    LinkStack stack;
+    //栈顶指针
+    LinkNode* top;
+}*LinkStackEntityP;
 
 
-LinkStack createLinkStack();
 
-void initLinkStack(LinkStack stack);
+LinkStackEntityP createLinkStack();
 
-void pushLinkStack(LinkStack stack,int elem);
+void initLinkStack(LinkStackEntityP stack);
 
-int popLinkStack(LinkStack stack);
+void pushLinkStack(LinkStackEntityP stack,int elem);
 
-int linkStackSize(LinkStack stack);
+int popLinkStack(LinkStackEntityP stack);
 
-int getLinkStackTopElem(LinkStack stack);
+int linkStackSize(LinkStackEntityP stack);
 
-bool checkLinkStackEmpty(LinkStack stack);
+int getLinkStackTopElem(LinkStackEntityP stack);
+
+bool checkLinkStackEmpty(LinkStackEntityP stack);
 
 #endif //DATASTRUCTS_AND_ALGORITHM_IN_C_LINK_STACK_H

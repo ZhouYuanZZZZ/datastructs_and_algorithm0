@@ -1,28 +1,35 @@
 #include <utils.h>
 #include "link_stack.h"
 
-int main3323(){
+int main5569878() {
 
-    LinkStack stack = createLinkStack();
-    initLinkStack(stack);
+    LinkStackEntityP linkStackEntityP = createLinkStack();
+    initLinkStack(linkStackEntityP);
 
-    pushLinkStack(stack,123);
-    pushLinkStack(stack,456);
+    pushLinkStack(linkStackEntityP, 100);
+    pushLinkStack(linkStackEntityP, 101);
+    pushLinkStack(linkStackEntityP, 102);
+    pushLinkStack(linkStackEntityP, 103);
+    pushLinkStack(linkStackEntityP, 104);
 
-    printf("length:%d\n",linkStackSize(stack));
-    printf("pop:%d\n",popLinkStack(stack));
-    printf("length:%d\n",linkStackSize(stack));
+    printf("length:%d\n", linkStackSize(linkStackEntityP));
+    printf("pop:%d\n", popLinkStack(linkStackEntityP));
+    printf("length:%d\n", linkStackSize(linkStackEntityP));
 
-    pushLinkStack(stack,1);
+    pushLinkStack(linkStackEntityP, 1);
 
-    pushLinkStack(stack,2);
+    pushLinkStack(linkStackEntityP, 2);
 
-    pushLinkStack(stack,3);
+    pushLinkStack(linkStackEntityP, 3);
 
-    printf("pop:%d\n",popLinkStack(stack));
+    printf("pop:%d\n", popLinkStack(linkStackEntityP));
+
+    printf("-----------------------\n");
+    while(!checkLinkStackEmpty(linkStackEntityP)){
+        int elem = popLinkStack(linkStackEntityP);
+        printf("%d\n",elem);
+    }
 
 
-
-    
     return 0;
 }

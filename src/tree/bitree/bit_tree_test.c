@@ -8,6 +8,8 @@ int main(){
     printf("\n");
     inOrder(tree);
     printf("\n");
+    inOrder(tree);
+    printf("\n");
     postOrder(tree);
 
     return 0;
