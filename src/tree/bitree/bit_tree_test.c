@@ -11,6 +11,8 @@ int main(){
     inOrder(tree);
     printf("\n");
     postOrder(tree);
+    printf("\n");
+    levelOrder(tree);
 
     return 0;
 }
