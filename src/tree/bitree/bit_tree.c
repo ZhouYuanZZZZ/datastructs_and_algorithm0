@@ -86,8 +86,6 @@ void preOrder(BiTree tree) {
 
         preOrder(tree->rchild);
     }
-
-
 }
 
 //中序遍历

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "bit_tree.h"
 
-int main(){
+int maidddn(){
 
     BiTree tree = genTestTree();
     preOrder(tree);
