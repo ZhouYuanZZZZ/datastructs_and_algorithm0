@@ -1,6 +1,6 @@
 #ifndef ALGORITHMINC_SLIST_H
 #define ALGORITHMINC_SLIST_H
-#include <malloc.h>
+
 
 typedef struct SListStruct {
 	int loc;

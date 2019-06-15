@@ -8,10 +8,12 @@ typedef struct ThreadNode{
 } ThreadNode,*ThreadTree;
 
 
+
+
 ThreadTree genTestThreadTree();
 
 //中序线索化二叉树
-void inThread(ThreadTree p,ThreadTree pre);
+void inThread(ThreadTree p);
 
 void createInThread(ThreadTree tree);
 

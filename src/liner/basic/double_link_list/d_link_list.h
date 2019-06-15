@@ -1,6 +1,6 @@
 #ifndef DATASTRUCTS_AND_ALGORITHM_IN_C_D_LINK_LIST_H
 #define DATASTRUCTS_AND_ALGORITHM_IN_C_D_LINK_LIST_H
-#include <malloc.h>
+
 
 //双链表节点
 typedef struct DSNode{

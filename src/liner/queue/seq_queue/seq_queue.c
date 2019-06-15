@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "malloc.h"
+
 #include "seq_queue.h"
 
 SeqQueue* createSeqQueue(){

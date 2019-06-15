@@ -1,16 +1,20 @@
-#include <malloc.h>
 #include <stdio.h>
 #include "thread_bit_tree.h"
 
 
+//全局变量，始终指向刚访问过的节点
+ThreadTree pre0 = NULL;
+
 ThreadTree genTestThreadTree() {
 
-    ThreadNode *nodes[6];
+    ThreadNode* nodes[6];
     for (int i = 0; i < 6; i++) {
         nodes[i] = (ThreadNode *) malloc(sizeof(ThreadNode));
         nodes[i]->data = i;
         nodes[i]->rchild = NULL;
         nodes[i]->lchild = NULL;
+        nodes[i]->ltag = 0;
+        nodes[i]->rtag = 0;
     }
 
     nodes[0]->lchild = nodes[1];
@@ -25,42 +29,43 @@ ThreadTree genTestThreadTree() {
 
 }
 
-void inThread(ThreadTree p, ThreadTree pre) {
+void inThread(ThreadTree p) {
 
     if (p != NULL) {
 
         //线索化左子树
-        inThread(p->lchild, pre);
+        inThread(p->lchild);
 
         //左子树为空 建立前驱索引
         if (p->lchild == NULL) {
-            p->lchild = pre;
+
+            //pre0 为全局变量 始终指向先前刚访问过的节点
+            p->lchild = pre0;
             p->ltag = 1;
-        } else {
-            p->ltag = 0;
         }
 
-        //右子树为空 建立后继节点
-        if (pre != NULL && pre->rchild == NULL) {
-            pre->rchild = p;
-            p->rtag = 1;
-        } else {
-            p->rtag = 0;
+        //先前节点右子树为空 建立后继节点
+        if (pre0 != NULL && pre0->rchild == NULL) {
+            pre0->rchild = p;
+            pre0->rtag = 1;
         }
 
-        pre = p;
+        pre0 = p;
 
         //线索化右子树
-        inThread(p->rchild, pre);
+        inThread(p->rchild);
     }
 
 }
 
 void createInThread(ThreadTree tree) {
 
-    ThreadTree* pre = NULL;
     if (tree != NULL) {
-        inThread(tree, pre);
+        inThread(tree);
+
+        //处理遍历后的最后一个节点
+        pre0->rtag = 1;
+        pre0->rchild = NULL;
     }
 }
 

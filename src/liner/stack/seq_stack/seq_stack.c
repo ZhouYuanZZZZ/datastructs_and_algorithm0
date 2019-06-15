@@ -1,4 +1,4 @@
-#include <malloc.h>
+
 #include <stdbool.h>
 #include <stdio.h>
 #include "seq_stack.h"

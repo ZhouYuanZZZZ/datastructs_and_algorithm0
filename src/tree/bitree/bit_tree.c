@@ -1,4 +1,4 @@
-#include <malloc.h>
+
 #include "bit_tree.h"
 #include "stdio.h"
 
