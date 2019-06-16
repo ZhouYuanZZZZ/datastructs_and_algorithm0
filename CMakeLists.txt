@@ -38,4 +38,4 @@ add_executable(datastructs_and_algorithm_in_c
         src/tree/thread_bit_tree/thread_bit_tree.c
         src/tree/thread_bit_tree/thread_bit_tree.h
         src/tree/thread_bit_tree/thread_bit_tree_test.c
-        )
+        src/tree/sort_bit_tree/sort_bit_tree.c src/tree/sort_bit_tree/sort_bit_tree.h src/tree/sort_bit_tree/sort_bit_tree_test.c)

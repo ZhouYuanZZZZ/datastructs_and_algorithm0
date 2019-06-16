@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "thread_bit_tree.h"
 
-int main(){
+int main12121(){
 
     ThreadTree tree =  genTestThreadTree();
 
